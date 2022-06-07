@@ -40,6 +40,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         holder.bind(tweet);
     }
 
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Tweet> tweet) {
+        tweets.addAll(tweet);
+        notifyDataSetChanged();
+    }
+
+
     @Override
     public int getItemCount() {
         return tweets.size();
@@ -65,7 +76,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName.setText(tweet.user.screenName);
             tvBody.setText(tweet.body);
 
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(context      ).load(tweet.user.profileImageUrl).into(ivProfileImage);
         }
     }
 
