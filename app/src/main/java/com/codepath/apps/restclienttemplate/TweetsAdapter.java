@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
+import static com.codepath.apps.restclienttemplate.R.drawable.ic_launcher;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,8 +61,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage;
+        ImageView ivTweetImage;
         TextView tvBody;
         TextView tvScreenName;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +72,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            ivTweetImage =  itemView.findViewById(R.id.ivTweetImage);
+
 
 
         }
@@ -76,7 +82,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName.setText(tweet.user.screenName);
             tvBody.setText(tweet.body);
 
-            Glide.with(context      ).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(context).load(tweet.mediaUrl).into(ivTweetImage);
+            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
         }
     }
 

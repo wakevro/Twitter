@@ -11,9 +11,11 @@ import java.util.List;
 @Parcel
 public class Tweet {
 
+    public String mediaUrl;
     public String body;
     public String createdAt;
     public User user;
+
 
     public Tweet() {}
 
@@ -21,7 +23,18 @@ public class Tweet {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
-        tweet.user = User.fromJson(jsonObject.getJSONObject("user"))  ;
+        tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.mediaUrl = "";
+
+        if (jsonObject.getJSONObject("entities").has("media")) {
+
+            JSONArray media = jsonObject.getJSONObject("entities").getJSONArray("media");
+            if (media.length() > 0) {
+                tweet.mediaUrl = media.getJSONObject(0).getString("media_url").toString();
+            }
+
+        }
+
         return tweet;
     }
 

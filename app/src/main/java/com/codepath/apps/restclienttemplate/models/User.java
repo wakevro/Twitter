@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
