@@ -86,11 +86,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         public void bind(Tweet tweet) {
             tvName.setText(tweet.user.name);
-            tvUserName.setText(tweet.user.screenName);
+            if ((tweet.user.name).length() < 20) {
+                tvUserName.setText(tweet.user.screenName);
+            }
             tvBody.setText(tweet.body);
             tvTimeStamp.setText(tweet.timeStamp);
 
-            int radius = 50;
+            int radius = 80;
             Glide.with(context).load(tweet.mediaUrl).into(ivTweetImage);
             Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCorners(radius)).into(ivProfileImage);
         }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -25,7 +26,9 @@ public class ComposeActivity extends AppCompatActivity {
 
     EditText etCompose;
     Button btnTweet;
+    ProgressBar pbProgressBar;
     TwitterClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +37,18 @@ public class ComposeActivity extends AppCompatActivity {
 
         etCompose = findViewById(R.id.etCompose);
         btnTweet = findViewById(R.id.btnTweet);
+        pbProgressBar = findViewById(R.id.pbProgressBar);
+        pbProgressBar.setVisibility(View.INVISIBLE);
 
         client = TwitterApp.getRestClient(this);
 
         btnTweet.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
+                pbProgressBar.setVisibility(View.VISIBLE);
+
                 String tweetContent = etCompose.getText().toString();
                 if (tweetContent.isEmpty()) {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet cannot be empty.", Toast.LENGTH_LONG).show();
@@ -50,7 +59,7 @@ public class ComposeActivity extends AppCompatActivity {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet is too long.", Toast.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
+//                Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -62,6 +71,7 @@ public class ComposeActivity extends AppCompatActivity {
                             data.putExtra("tweet", Parcels.wrap(tweet));
                             setResult(RESULT_OK, data);
                             // finish() closes the activity
+                            pbProgressBar.setVisibility(View.INVISIBLE);
                             finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -73,6 +83,7 @@ public class ComposeActivity extends AppCompatActivity {
                         Log.e(TAG, "onFailure to publish tweet", throwable);
                     }
                 });
+                ;
                 return;
             }
         });
