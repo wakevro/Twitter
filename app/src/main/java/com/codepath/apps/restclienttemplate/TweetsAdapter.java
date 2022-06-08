@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,7 +64,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView ivProfileImage;
         ImageView ivTweetImage;
         TextView tvBody;
-        TextView tvScreenName;
+        TextView tvName;
+        TextView tvUserName;
+        TextView tvTimeStamp;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -71,16 +74,20 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
-            tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvUserName = itemView.findViewById(R.id.tvUserName);
             ivTweetImage =  itemView.findViewById(R.id.ivTweetImage);
+            tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
 
 
 
         }
 
         public void bind(Tweet tweet) {
-            tvScreenName.setText(tweet.user.screenName);
+            tvName.setText(tweet.user.name);
+            tvUserName.setText(tweet.user.screenName);
             tvBody.setText(tweet.body);
+            tvTimeStamp.setText(tweet.timeStamp);
 
             Glide.with(context).load(tweet.mediaUrl).into(ivTweetImage);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
