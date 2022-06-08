@@ -1,6 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
-import static com.codepath.apps.restclienttemplate.R.drawable.ic_launcher;
+import static com.codepath.apps.restclienttemplate.R.drawable.ic_launcher_twitter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.json.JSONArray;
@@ -89,8 +90,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody.setText(tweet.body);
             tvTimeStamp.setText(tweet.timeStamp);
 
+            int radius = 50;
             Glide.with(context).load(tweet.mediaUrl).into(ivTweetImage);
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCorners(radius)).into(ivProfileImage);
         }
     }
 

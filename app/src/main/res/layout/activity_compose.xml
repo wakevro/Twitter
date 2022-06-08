@@ -4,14 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark"
     tools:context=".ComposeActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etComposeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/light_gray"
+        app:boxBackgroundColor="@color/light_gray"
+        app:boxStrokeColor="@color/light_gray"
         app:counterEnabled="true"
-        app:counterMaxLength="280">
+        app:counterMaxLength="280"
+        app:counterTextColor="@color/light_gray"
+        app:errorTextColor="@color/medium_red"
+        app:helperTextTextColor="@color/light_gray"
+        app:hintTextColor="@color/light_gray"
+        app:placeholderTextColor="@color/light_gray">
 
         <EditText
             android:id="@+id/etCompose"
@@ -25,7 +34,9 @@
             android:gravity="start|top"
             android:hint="What's happening?"
             android:inputType="textMultiLine"
-            android:minLines="5" />
+            android:minLines="5"
+            android:textColor="@color/light_gray"
+            android:textColorHint="@color/light_gray" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

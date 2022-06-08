@@ -1,19 +1,47 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/dark"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".LoginActivity" >
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".LoginActivity">
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
+        android:id="@+id/btnLogin"
+        android:layout_width="259dp"
+        android:layout_height="61dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/round_btn"
         android:onClick="loginToRest"
-        android:text="@string/login_label" />
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/login_label"
+        android:textAlignment="center"
+        android:textColor="@color/dark"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <ImageView
+        android:id="@+id/ivLoginIcon"
+        android:layout_width="125dp"
+        android:layout_height="211dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="171dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="150dp"
+        app:srcCompat="@drawable/ic_launcher_twitter_round" />
 
 </RelativeLayout>

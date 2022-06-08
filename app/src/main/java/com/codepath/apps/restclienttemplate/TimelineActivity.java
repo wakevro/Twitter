@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -41,6 +42,7 @@ public class TimelineActivity extends AppCompatActivity {
      List<Tweet> tweets;
      TweetsAdapter adapter;
      Button btnLogout;
+     ImageView ivHome;
 
 
     @Override
@@ -68,6 +70,15 @@ public class TimelineActivity extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 onLogoutButton();
+            }
+        });
+
+        ivHome = findViewById(R.id.ivHome);
+
+        ivHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvTweets.smoothScrollToPosition(0);
             }
         });
 

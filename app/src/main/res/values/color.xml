@@ -4,7 +4,7 @@
     <color name="medium_gray">#ffaab8c2</color>
     <color name="medium_gray_30">#4daab8c2</color>
     <color name="medium_gray_50">#80aab8c2</color>
-    <color name="light_gray">#ffccd6dd</color>
+    <color name="light_gray">#E5EAED</color>
     <color name="medium_red">#ffe0245e</color>
     <color name="medium_red_30">#4de0245e</color>
     <color name="medium_red_50">#80e0245e</color>
@@ -19,4 +19,6 @@
     <color name="inline_action_pressed">@color/medium_gray_50</color>
     <color name="inline_action_retweet">@color/medium_green</color>
     <color name="inline_action_retweet_pressed">@color/medium_gray_50</color>
+    <color name="dark">#0C0C0C</color>
+    <color name="dark_menu">#050505</color>
 </resources>
