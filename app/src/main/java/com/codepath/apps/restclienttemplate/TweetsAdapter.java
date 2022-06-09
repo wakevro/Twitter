@@ -3,10 +3,13 @@ package com.codepath.apps.restclienttemplate;
 import static com.codepath.apps.restclienttemplate.R.drawable.ic_launcher_twitter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -64,6 +67,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         ImageView ivProfileImage;
         ImageView ivTweetImage;
+        ImageView ivVerified;
         TextView tvBody;
         TextView tvName;
         TextView tvUserName;
@@ -74,6 +78,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             super(itemView);
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            ivVerified = itemView.findViewById(R.id.ivVerified);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvName = itemView.findViewById(R.id.tvName);
             tvUserName = itemView.findViewById(R.id.tvUserName);
@@ -84,6 +89,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         }
 
+
         public void bind(Tweet tweet) {
             tvName.setText(tweet.user.name);
             if ((tweet.user.name).length() < 20) {
@@ -92,9 +98,19 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody.setText(tweet.body);
             tvTimeStamp.setText(tweet.timeStamp);
 
+
+
             int radius = 80;
             Glide.with(context).load(tweet.mediaUrl).into(ivTweetImage);
             Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCorners(radius)).into(ivProfileImage);
+            Log.i("Verified", tweet.user.name + ":  " +  tweet.user.verified.toString());
+            Log.i("Verified", tweet.user.name + ":  " +  tvName.getWidth());
+            if (tweet.user.verified) {
+//                Log.i("Verified", tweet.user.verified.toString());
+                ivVerified.setImageResource(R.drawable.ic_vector_verified);
+            } else {
+                ivVerified.setImageResource(0);
+            }
         }
     }
 

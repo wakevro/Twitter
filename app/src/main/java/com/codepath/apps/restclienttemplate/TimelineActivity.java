@@ -50,6 +50,7 @@ public class TimelineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
+        
         swipeContainer = findViewById(R.id.swipeContainer);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -92,10 +93,12 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setAdapter(adapter);
 
 
+
         populateHomeTimeline();
     }
 
     private void fetchTimelineAsync(int page) {
+        adapter.clear();
         adapter.clear();
         populateHomeTimeline();
         swipeContainer.setRefreshing(false);

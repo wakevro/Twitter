@@ -65,8 +65,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/tvName"
+        android:layout_toEndOf="@+id/ivVerified"
         android:textColor="@color/medium_gray_50"
         android:textSize="14sp"
         tools:text="username" />
+
+    <ImageView
+        android:id="@+id/ivVerified"
+        android:layout_width="19dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/tvName"
+        tools:srcCompat="@tools:sample/avatars" />
 </RelativeLayout>
