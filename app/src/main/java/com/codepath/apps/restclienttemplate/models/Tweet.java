@@ -27,6 +27,7 @@ public class Tweet {
     public String replyCount;
     public String retweetCount;
     public String favoriteCount;
+    public long id;
 
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
@@ -71,6 +72,7 @@ public class Tweet {
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
+
         if(jsonObject.has("full_text")) {
             tweet.body = jsonObject.getString("full_text");
         } else {
@@ -81,6 +83,7 @@ public class Tweet {
         tweet.replyCount = jsonObject.getString("retweet_count");
         tweet.retweetCount = jsonObject.getString("retweet_count");
         tweet.favoriteCount = jsonObject.getString("favorite_count");
+        tweet.id = jsonObject.getLong("id");
 
 
         tweet.mediaUrl = "";

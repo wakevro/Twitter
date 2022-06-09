@@ -43,6 +43,9 @@ public class TimelineActivity extends AppCompatActivity {
      TweetsAdapter adapter;
      Button btnLogout;
      ImageView ivHome;
+     long lastId;
+
+     private EndlessRecyclerViewScrollListener scrollListener;
 
 
     @Override
@@ -89,13 +92,50 @@ public class TimelineActivity extends AppCompatActivity {
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets);
 
-        rvTweets.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rvTweets.setLayoutManager(linearLayoutManager);
         rvTweets.setAdapter(adapter);
 
 
-
         populateHomeTimeline();
+
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                loadNextDataFromApi(page);
+            }
+        };
+        // Adds the scroll listener to RecyclerView
+        rvTweets.addOnScrollListener(scrollListener);
     }
+
+    public void loadNextDataFromApi(int page) {
+        lastId = tweets.get(tweets.size()-1).id;
+        client.getUserTimeline(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "Endless Scroll onSuccess!" + json.toString());
+                JSONArray jsonArray = json.jsonArray;
+                try {
+                    adapter.addAll( Tweet.fromJsonArray(jsonArray));
+                } catch (JSONException e) {
+                    Log.e(TAG, "Json exception", e);
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.e(TAG, "onFailure" + response, throwable );
+            }
+        }, lastId);
+    }
+
 
     private void fetchTimelineAsync(int page) {
         adapter.clear();
