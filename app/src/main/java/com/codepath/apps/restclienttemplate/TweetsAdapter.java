@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
     Context context;
     List<Tweet> tweets;
+    public String TAG = "TweetsAdapter";
 
 
     public TweetsAdapter(Context context, List<Tweet> tweets) {
@@ -66,6 +68,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView ivProfileImage;
         ImageView ivTweetImage;
         ImageView ivVerified;
+        ImageView ivFavorite;
+        ImageView ivRetweet;
         TextView tvBody;
         TextView tvName;
         TextView tvUserName;
@@ -73,13 +77,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvReplyCount;
         TextView tvRetweetCount;
         TextView tvFavoriteCount;
-
+        Boolean isLiked = false;
+        Boolean isRetweeted = false;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             ivVerified = itemView.findViewById(R.id.ivVerified);
+            ivFavorite = itemView.findViewById(R.id.ivFavorite);
+            ivRetweet = itemView.findViewById(R.id.ivRetweet);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvName = itemView.findViewById(R.id.tvName);
             tvUserName = itemView.findViewById(R.id.tvUserName);
@@ -89,6 +96,40 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvRetweetCount = itemView.findViewById(R.id.tvRetweetCount);
             tvFavoriteCount = itemView.findViewById(R.id.tvFavoriteCount);
 
+
+            ivFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
+
+                    if (isLiked) {
+                        isLiked = false;
+                        ivFavorite.setImageResource(R.drawable.ic_vector_heart_stroke);
+                    } else {
+                        isLiked = true;
+                        ivFavorite.setImageResource(R.drawable.ic_vector_heart);
+                    }
+
+
+                }
+            });
+
+            ivRetweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
+
+                    if (isRetweeted) {
+                        isRetweeted = false;
+                        ivRetweet.setImageResource(R.drawable.ic_vector_retweet_stroke);
+                    } else {
+                        isRetweeted = true;
+                        ivRetweet.setImageResource(R.drawable.ic_vector_retweet);
+                    }
+
+
+                }
+            });
 
 
             itemView.setOnClickListener((v) ->  {
@@ -104,6 +145,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     context.startActivity(intent);
                 }
             });
+
+
+
+
 
 
 
