@@ -52,11 +52,13 @@ public class ComposeActivity extends AppCompatActivity {
                 String tweetContent = etCompose.getText().toString();
                 if (tweetContent.isEmpty()) {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet cannot be empty.", Toast.LENGTH_LONG).show();
+                    pbProgressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 
                 if (tweetContent.length() > MAX_TWEET_LENGTH) {
                     Toast.makeText(ComposeActivity.this, "Sorry, your tweet is too long.", Toast.LENGTH_LONG).show();
+                    pbProgressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 //                Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
@@ -65,6 +67,7 @@ public class ComposeActivity extends AppCompatActivity {
                     public void onSuccess(int statusCode, Headers headers, JSON json) {
                         Log.i(TAG, "onSuccess to publish tweet");
                         try {
+
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
                             Log.i(TAG, "Published tweet says: " + tweet.body);
                             Intent data = new Intent();
@@ -74,6 +77,7 @@ public class ComposeActivity extends AppCompatActivity {
                             pbProgressBar.setVisibility(View.INVISIBLE);
                             finish();
                         } catch (JSONException e) {
+                            pbProgressBar.setVisibility(View.INVISIBLE);
                             e.printStackTrace();
                         }
                     }

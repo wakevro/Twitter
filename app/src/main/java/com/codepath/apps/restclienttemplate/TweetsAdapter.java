@@ -3,6 +3,8 @@ package com.codepath.apps.restclienttemplate;
 import static com.codepath.apps.restclienttemplate.R.drawable.ic_launcher_twitter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Movie;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +24,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.json.JSONArray;
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -28,6 +32,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
     Context context;
     List<Tweet> tweets;
+
 
     public TweetsAdapter(Context context, List<Tweet> tweets) {
         this.context = context;
@@ -63,7 +68,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return tweets.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements com.codepath.apps.restclienttemplate.ViewHolder {
 
         ImageView ivProfileImage;
         ImageView ivTweetImage;
@@ -87,6 +92,22 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
 
+            itemView.setOnClickListener((v) ->  {
+                int position = getAdapterPosition();
+//                Toast.makeText(context, "Nice", Toast.LENGTH_SHORT).show();
+                if (position != RecyclerView.NO_POSITION) {
+                    Tweet tweet = tweets.get(position);
+
+                    Intent intent = new Intent(context, TweetDetailsActivity.class);
+
+                    intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+
+                    context.startActivity(intent);
+                }
+            });
+
+
+
         }
 
 
@@ -106,12 +127,18 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Log.i("Verified", tweet.user.name + ":  " +  tweet.user.verified.toString());
             Log.i("Verified", tweet.user.name + ":  " +  tvName.getWidth());
             if (tweet.user.verified) {
-//                Log.i("Verified", tweet.user.verified.toString());
+                ivVerified.setVisibility(View.VISIBLE);
                 ivVerified.setImageResource(R.drawable.ic_vector_verified);
             } else {
+                ivVerified.setVisibility(View.GONE);
                 ivVerified.setImageResource(0);
             }
         }
+
+
+
+
+
     }
 
 }

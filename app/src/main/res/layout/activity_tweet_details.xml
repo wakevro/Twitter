@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".TweetDetailsActivity">
+
+    <ImageView
+        android:id="@+id/ivDetailsProfileImage"
+        android:layout_width="66dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvDetailsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/ivDetailsProfileImage"
+        tools:text="Wakevro" />
+
+    <TextView
+        android:id="@+id/tvDetailsUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDetailsName"
+        android:layout_alignStart="@+id/tvDetailsName"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        tools:text="username" />
+
+    <TextView
+        android:id="@+id/tvDetailsBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDetailsUserName"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        tools:text="This is my detailed tweet." />
+
+    <ImageView
+        android:id="@+id/ivDetailsTweetImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDetailsBody"
+        android:layout_alignStart="@+id/tvDetailsBody"
+        android:layout_alignEnd="@+id/tvDetailsBody"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="0dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivDetailsVerified"
+        android:layout_width="19dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tvDetailsName"
+        tools:srcCompat="@tools:sample/avatars" />
+</RelativeLayout>
