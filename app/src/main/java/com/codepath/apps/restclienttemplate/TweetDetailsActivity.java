@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.parceler.Parcels;
@@ -34,6 +35,8 @@ public class TweetDetailsActivity extends AppCompatActivity {
 
         tweet = (Tweet) Parcels.unwrap(getIntent().getParcelableExtra(Tweet.class.getSimpleName()));
 
+//        Log.i(TAG, "Tweet is: " + t);
+
 
         ivDetailsProfileImage = findViewById(R.id.ivDetailsProfileImage);
         ivDetailsVerified = findViewById(R.id.ivDetailsVerified);
@@ -48,7 +51,8 @@ public class TweetDetailsActivity extends AppCompatActivity {
         tvDetailsUserName.setText(tweet.user.screenName);
         tvDetailsBody.setText(tweet.body);
 
-        Glide.with(this).load(tweet.user.profileImageUrl).into(ivDetailsProfileImage);
+        int profileRadius = 80;
+        Glide.with(this).load(tweet.user.profileImageUrl).transform(new RoundedCorners(profileRadius)).into(ivDetailsProfileImage);
         Glide.with(this).load(tweet.mediaUrl).into(ivDetailsTweetImage);
 
         if (tweet.user.verified) {
