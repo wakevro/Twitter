@@ -101,19 +101,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivTweetImage"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivReply"
+        android:layout_toEndOf="@+id/tvReplyCount"
         app:srcCompat="@drawable/ic_vector_retweet_stroke" />
 
     <ImageView
-        android:id="@+id/ivLike"
+        android:id="@+id/ivFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivTweetImage"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivRetweet"
+        android:layout_toEndOf="@+id/tvRetweetCount"
         app:srcCompat="@drawable/ic_vector_heart_stroke" />
 
     <ImageView
@@ -125,5 +125,38 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="5dp"
         app:srcCompat="@drawable/ic_vector_reply" />
+
+    <TextView
+        android:id="@+id/tvReplyCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivReply"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ivReply"
+        android:textColor="@color/light_gray"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/tvRetweetCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivRetweet"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ivRetweet"
+        android:textColor="@color/light_gray"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/tvFavoriteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivFavorite"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ivFavorite"
+        android:textColor="@color/light_gray"
+        tools:text="0" />
 
 </RelativeLayout>

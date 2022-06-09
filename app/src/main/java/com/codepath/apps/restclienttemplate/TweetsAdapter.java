@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -69,6 +70,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvName;
         TextView tvUserName;
         TextView tvTimeStamp;
+        TextView tvReplyCount;
+        TextView tvRetweetCount;
+        TextView tvFavoriteCount;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -81,6 +85,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvUserName = itemView.findViewById(R.id.tvUserName);
             ivTweetImage =  itemView.findViewById(R.id.ivTweetImage);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
+            tvReplyCount = itemView.findViewById(R.id.tvReplyCount);
+            tvRetweetCount = itemView.findViewById(R.id.tvRetweetCount);
+            tvFavoriteCount = itemView.findViewById(R.id.tvFavoriteCount);
 
 
 
@@ -110,6 +117,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             }
             tvBody.setText(tweet.body);
             tvTimeStamp.setText(tweet.timeStamp);
+
+            tvReplyCount.setText(tweet.replyCount);
+            tvRetweetCount.setText(tweet.retweetCount);
+            tvFavoriteCount.setText(tweet.favoriteCount);
+
 
 
 
