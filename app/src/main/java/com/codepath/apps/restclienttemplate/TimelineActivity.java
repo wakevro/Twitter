@@ -82,7 +82,7 @@ public class TimelineActivity extends AppCompatActivity {
         ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rvTweets.smoothScrollToPosition(0);
+                rvTweets.scrollToPosition(0);
             }
         });
 
