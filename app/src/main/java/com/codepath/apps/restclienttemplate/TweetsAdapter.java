@@ -219,11 +219,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                         if (changedCount) {
                             newCount -= 1;
                             changedCount = false;
+                            tvFavoriteCount.setText(String.valueOf(newCount));
                         } else {
                             newCount = Integer.parseInt(tweet.favoriteCount) - 1;
                             changedCount = true;
+                            tvFavoriteCount.setText(String.valueOf(newCount));
                         }
-                        tvFavoriteCount.setText(String.valueOf(newCount));
+
                         ivFavorite.setImageResource(R.drawable.ic_vector_heart_stroke);
                     } else {
                         client.addLikes(tweet.id, new JsonHttpResponseHandler() {
