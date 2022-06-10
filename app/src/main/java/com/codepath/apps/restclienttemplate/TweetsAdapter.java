@@ -118,6 +118,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     } else {
                         isRetweeted = true;
                         ivRetweet.setImageResource(R.drawable.ic_vector_retweet);
+
                     }
 
 
@@ -177,7 +178,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
 
             int profileRadius = 80;
-            Glide.with(context).load(tweet.mediaUrl).into(ivTweetImage);
+            Glide.with(context).load(tweet.mediaUrl).transform(new RoundedCorners(50)).into(ivTweetImage);
             Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCorners(profileRadius)).into(ivProfileImage);
             Log.i("Verified", tweet.user.name + ":  " +  tweet.user.verified.toString());
             Log.i("Verified", tweet.user.name + ":  " +  tvName.getWidth());

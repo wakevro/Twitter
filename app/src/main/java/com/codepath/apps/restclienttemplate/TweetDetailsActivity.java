@@ -76,7 +76,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
 
         int profileRadius = 80;
         Glide.with(this).load(tweet.user.profileImageUrl).transform(new RoundedCorners(profileRadius)).into(ivDetailsProfileImage);
-        Glide.with(this).load(tweet.mediaUrl).into(ivDetailsTweetImage);
+        Glide.with(this).load(tweet.mediaUrl).transform(new RoundedCorners(50)).into(ivDetailsTweetImage);
 
         if (tweet.user.verified) {
             ivDetailsVerified.setVisibility(View.VISIBLE);
