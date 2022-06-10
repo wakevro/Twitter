@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.codepath.apps.restclienttemplate.databinding.ActivityTimelineBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
@@ -33,6 +34,7 @@ public class TimelineActivity extends AppCompatActivity {
 
 
     private SwipeRefreshLayout swipeContainer;
+    private ActivityTimelineBinding binding;
 
     public static final String TAG = "TimelineActivity";
     public static final int REQUEST_CODE = 20;
@@ -51,10 +53,12 @@ public class TimelineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        ActivityTimelineBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         
-        swipeContainer = findViewById(R.id.swipeContainer);
+        swipeContainer = binding.swipeContainer;
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -77,7 +81,7 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
 
-        ivHome = findViewById(R.id.ivHome);
+        ivHome = binding.ivHome;
 
         ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +92,7 @@ public class TimelineActivity extends AppCompatActivity {
 
         client = TwitterApp.getRestClient(this);
 
-        rvTweets = findViewById(R.id.rvTweets);
+        rvTweets = binding.rvTweets;
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets);
 
