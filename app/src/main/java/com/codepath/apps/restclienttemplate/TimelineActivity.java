@@ -45,6 +45,7 @@ public class TimelineActivity extends AppCompatActivity {
      TweetsAdapter adapter;
      Button btnLogout;
      ImageView ivHome;
+
      long lastId;
 
      private EndlessRecyclerViewScrollListener scrollListener;
@@ -53,7 +54,7 @@ public class TimelineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityTimelineBinding.inflate(getLayoutInflater());
+        binding = ActivityTimelineBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 

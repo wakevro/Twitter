@@ -27,6 +27,7 @@ public class Tweet {
     public String replyCount;
     public String retweetCount;
     public String favoriteCount;
+    public Boolean isFavorited;
     public long id;
 
     private static final int SECOND_MILLIS = 1000;
@@ -84,6 +85,7 @@ public class Tweet {
         tweet.retweetCount = jsonObject.getString("retweet_count");
         tweet.favoriteCount = jsonObject.getString("favorite_count");
         tweet.id = jsonObject.getLong("id");
+        tweet.isFavorited = jsonObject.getBoolean("favorited");
 
 
         tweet.mediaUrl = "";
