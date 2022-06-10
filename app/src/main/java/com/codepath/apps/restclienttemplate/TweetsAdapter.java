@@ -114,6 +114,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 }
             });
 
+
             ivRetweet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
