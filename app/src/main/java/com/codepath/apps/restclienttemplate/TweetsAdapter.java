@@ -17,16 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.parceler.Parcels;
 
 import java.util.List;
 
+import okhttp3.Headers;
+
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
     Context context;
     List<Tweet> tweets;
+    TwitterClient client;
     public String TAG = "TweetsAdapter";
+    public int newCount = 0;
 
 
     public TweetsAdapter(Context context, List<Tweet> tweets) {
@@ -37,6 +42,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        client = TwitterApp.getRestClient(context);
         View view = LayoutInflater.from(context).inflate(R.layout.item_tweet, parent, false);
         return new ViewHolder(view);
     }
@@ -77,8 +83,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvReplyCount;
         TextView tvRetweetCount;
         TextView tvFavoriteCount;
-        Boolean isLiked = false;
+        Boolean isFavorited;
         Boolean isRetweeted = false;
+        Boolean changedCount = false;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,22 +104,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvFavoriteCount = itemView.findViewById(R.id.tvFavoriteCount);
 
 
-            ivFavorite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
 
-                    if (isLiked) {
-                        isLiked = false;
-                        ivFavorite.setImageResource(R.drawable.ic_vector_heart_stroke);
-                    } else {
-                        isLiked = true;
-                        ivFavorite.setImageResource(R.drawable.ic_vector_heart);
-                    }
-
-
-                }
-            });
 
 
             ivRetweet.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +188,77 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 ivVerified.setVisibility(View.GONE);
                 ivVerified.setImageResource(0);
             }
+
+            Log.i(TAG, "Liked: " + tweet.isFavorited);
+            if (tweet.isFavorited) {
+                isFavorited = true;
+                ivFavorite.setImageResource(R.drawable.ic_vector_heart);
+            } else {
+                isFavorited = false;
+                ivFavorite.setImageResource(R.drawable.ic_vector_heart_stroke);
+            }
+            ivFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
+
+
+                    if (isFavorited) {
+                        client.removeLikes(tweet.id, new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                                Log.i(TAG, "onSuccess removeLike: " + tweet.id);
+                            }
+
+                            @Override
+                            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+                            }
+                        });
+                        isFavorited = false;
+                        if (changedCount) {
+                            newCount -= 1;
+                            changedCount = false;
+                        } else {
+                            newCount = Integer.parseInt(tweet.favoriteCount) - 1;
+                            changedCount = true;
+                        }
+                        tvFavoriteCount.setText(String.valueOf(newCount));
+                        ivFavorite.setImageResource(R.drawable.ic_vector_heart_stroke);
+                    } else {
+                        client.addLikes(tweet.id, new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                                Log.i(TAG, "onSuccess addLike: " + tweet.id);
+                            }
+
+                            @Override
+                            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+                            }
+                        });
+                        isFavorited = true;
+                        if (changedCount) {
+                            newCount += 1;
+                            changedCount = false;
+                        } else {
+                            newCount = Integer.parseInt(tweet.favoriteCount) + 1;
+                            changedCount = true;
+                        }
+                        tvFavoriteCount.setText(String.valueOf(newCount));
+
+                        ivFavorite.setImageResource(R.drawable.ic_vector_heart);
+                    }
+
+
+                }
+            });
+
+
         }
+
+
+
 
 
 
