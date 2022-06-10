@@ -27,9 +27,16 @@ public class TweetDetailsActivity extends AppCompatActivity {
     ImageView ivDetailsProfileImage;
     ImageView ivDetailsVerified;
     ImageView ivDetailsTweetImage;
+    ImageView ivDetailsReply;
+    ImageView ivDetailsRetweet;
+    ImageView ivDetailsFavorite;
     TextView tvDetailsName;
     TextView tvDetailsUserName;
     TextView tvDetailsBody;
+    TextView tvDetailsReplyCount;
+    TextView tvDetailsRetweetCount;
+    TextView tvDetailsFavoriteCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +58,21 @@ public class TweetDetailsActivity extends AppCompatActivity {
         tvDetailsName = binding.tvDetailsName;
         tvDetailsUserName = binding.tvDetailsUserName;
         tvDetailsBody = binding.tvDetailsBody;
+        ivDetailsReply = binding.ivDetailsReply;
+        ivDetailsRetweet = binding.ivDetailsRetweet;
+        ivDetailsFavorite = binding.ivDetailsFavorite;
+        tvDetailsReplyCount = binding.tvDetailsReplyCount;
+        tvDetailsRetweetCount = binding.tvDetailsRetweetCount;
+        tvDetailsFavoriteCount = binding.tvDetailsFavoriteCount;
 
 
 
         tvDetailsName.setText(tweet.user.name);
         tvDetailsUserName.setText(tweet.user.screenName);
         tvDetailsBody.setText(tweet.body);
+        tvDetailsReplyCount.setText(tweet.replyCount);
+        tvDetailsRetweetCount.setText(tweet.retweetCount);
+        tvDetailsFavoriteCount.setText(tweet.favoriteCount);
 
         int profileRadius = 80;
         Glide.with(this).load(tweet.user.profileImageUrl).transform(new RoundedCorners(profileRadius)).into(ivDetailsProfileImage);

@@ -76,4 +76,70 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/tvDetailsName"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivDetailsReply"
+        android:layout_width="21dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/ivDetailsTweetImage"
+        android:layout_alignStart="@+id/ivDetailsTweetImage"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/ic_vector_reply" />
+
+    <TextView
+        android:id="@+id/tvDetailsReplyCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivDetailsReply"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ivDetailsReply"
+        android:text="0"
+        android:textColor="@color/light_gray"
+        tools:text="0" />
+
+    <ImageView
+        android:id="@+id/ivDetailsRetweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivDetailsTweetImage"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/tvDetailsReplyCount"
+        app:srcCompat="@drawable/ic_vector_retweet_stroke" />
+
+    <TextView
+        android:id="@+id/tvDetailsRetweetCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivDetailsRetweet"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ivDetailsRetweet"
+        android:text="0"
+        android:textColor="@color/light_gray"
+        tools:text="0" />
+
+    <ImageView
+        android:id="@+id/ivDetailsFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivDetailsTweetImage"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/tvDetailsRetweetCount"
+        app:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+    <TextView
+        android:id="@+id/tvDetailsFavoriteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivDetailsFavorite"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/ivDetailsFavorite"
+        android:text="0"
+        android:textColor="@color/light_gray"
+        tools:text="0" />
 </RelativeLayout>

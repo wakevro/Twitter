@@ -45,7 +45,7 @@ public class TimelineActivity extends AppCompatActivity {
      TweetsAdapter adapter;
      Button btnLogout;
      ImageView ivHome;
-
+     ImageView ivCompose;
      long lastId;
 
      private EndlessRecyclerViewScrollListener scrollListener;
@@ -88,6 +88,16 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rvTweets.scrollToPosition(0);
+            }
+        });
+
+        ivCompose = binding.ivCompose;
+
+        ivCompose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent composeIntent = new Intent(TimelineActivity.this, ComposeActivity.class);
+            startActivityForResult(composeIntent, REQUEST_CODE);
             }
         });
 
@@ -151,22 +161,22 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     // Inflate the menu; this adds items to the action bar if it is present.
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.compose) {
-//            Toast.makeText(this, "Compose!", Toast.LENGTH_SHORT ).show();
-            Intent composeIntent = new Intent(this, ComposeActivity.class);
-            startActivityForResult(composeIntent, REQUEST_CODE);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.compose) {
+////            Toast.makeText(this, "Compose!", Toast.LENGTH_SHORT ).show();
+//            Intent composeIntent = new Intent(this, ComposeActivity.class);
+//            startActivityForResult(composeIntent, REQUEST_CODE);
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

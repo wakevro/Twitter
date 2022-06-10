@@ -81,7 +81,13 @@ public class Tweet {
         }
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-        tweet.replyCount = jsonObject.getString("retweet_count");
+
+        double doubleReplyCount = Math.random() * 20;
+        int intReplyCount = (int) doubleReplyCount;
+
+        String fakeReply = String.valueOf(intReplyCount);
+
+        tweet.replyCount = fakeReply;
         tweet.retweetCount = jsonObject.getString("retweet_count");
         tweet.favoriteCount = jsonObject.getString("favorite_count");
         tweet.id = jsonObject.getLong("id");
