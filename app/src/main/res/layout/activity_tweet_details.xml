@@ -50,7 +50,9 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
+        android:autoLink="all"
         android:textColor="@color/light_gray"
+        android:textColorLink="@color/twitter_blue"
         tools:text="This is my detailed tweet." />
 
     <ImageView

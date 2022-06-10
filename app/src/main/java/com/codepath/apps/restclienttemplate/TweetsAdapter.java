@@ -132,6 +132,19 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 }
             });
 
+            tvBody.setOnClickListener((v) ->  {
+                int position = getAdapterPosition();
+//                Toast.makeText(context, "Nice", Toast.LENGTH_SHORT).show();
+                if (position != RecyclerView.NO_POSITION) {
+                    Tweet tweet = tweets.get(position);
+
+                    Intent intent = new Intent(context, TweetDetailsActivity.class);
+
+                    intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+
+                    context.startActivity(intent);
+                }
+            });
 
             itemView.setOnClickListener((v) ->  {
                 int position = getAdapterPosition();
